@@ -9,9 +9,7 @@ from src.core.service import CatalogService
 routeur = APIRouter()
 
 
-@routeur.get("/",
-             #response_model=List[Catalog]
- )
+@routeur.get("/", response_model=List[Catalog])
 # @routeur.get("/")
 async def get_all_catalogs():
     # async def get_all_catalogs(db: Session = Depends(connect_with_connector)):

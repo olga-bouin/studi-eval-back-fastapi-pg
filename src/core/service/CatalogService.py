@@ -9,7 +9,7 @@ catalogs = [{"catalog_id": 1, "libelle": "Catalog 1"},
 #     return db.query(Catalog).all()
 
 def get_all_catalogs():
-    return {"catalogs": catalogs}
+    return catalogs
 
 
 def create_catalog(catalog: Catalog):
