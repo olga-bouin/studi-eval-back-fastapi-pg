@@ -5,7 +5,7 @@ from sqlalchemy.orm import declarative_base
 from src.api import api
 from src.core.database.database import connect_with_connector
 
-origins = ["http://localhost:4200"]
+origins = ["http://localhost:4200", "http://localhost:8080"]
 
 app = FastAPI(title='EvaluationOlga')
 
