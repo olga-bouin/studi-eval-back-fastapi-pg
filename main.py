@@ -1,22 +1,28 @@
 from fastapi import FastAPI
 from starlette.middleware.cors import CORSMiddleware
-from sqlalchemy.orm import declarative_base
-
 from src.api import api
-from src.core.database.database import connect_with_connector
 
-origins = ["http://localhost:4200", "http://localhost:8080"]
 
-app = FastAPI(title='EvaluationOlga')
+def add_middleware(app):
+    origins = ["http://localhost:4200", "http://localhost:8080"]
+    app.add_middleware(
+        CORSMiddleware,
+        allow_origins=origins,
+        allow_credentials=True,
+        allow_methods=["*"],
+        allow_headers=["*"],
+    )
 
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=origins,
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
 
-app.include_router(api.routeur, prefix='/api')
-# Base = declarative_base()
-# Base.metadata.create_all(connect_with_connector())
+def include_router(app):
+    app.include_router(api.routeur, prefix='/api')
+
+
+def start_application():
+    app: FastAPI = FastAPI(title='EvaluationOlga')
+    add_middleware(app)
+    include_router(app)
+    return app
+
+
+app = start_application()
