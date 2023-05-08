@@ -13,7 +13,7 @@ routeur = APIRouter()
 async def get_all_catalogs(db: Session = Depends(connect_with_connector)):
     return CatalogService.get_all_catalogs(db)
 
-
+#TODO: add a post method to create a catalog
 @routeur.post("/")
 async def create_catalog(catalog: Catalog):
     return CatalogService.create_catalog(catalog)
