@@ -1,4 +1,4 @@
-from sqlalchemy import Integer, Column, PrimaryKeyConstraint, String
+from sqlalchemy import Integer, Column, String
 
 
 class Catalog:
