@@ -1,10 +1,15 @@
+import os
+from dotenv import load_dotenv
+from pathlib import Path
 from fastapi import FastAPI
 from starlette.middleware.cors import CORSMiddleware
 from src.api import api
 
 
 def add_middleware(app):
-    origins = ["http://localhost:4200", "http://localhost:8080"]
+    env_path = Path('.') / '.env'
+    load_dotenv(dotenv_path=env_path)
+    origins = ["http://localhost:4200", "http://localhost:8080", os.getenv("FRONTEND_URL")]
     app.add_middleware(
         CORSMiddleware,
         allow_origins=origins,
