@@ -3,7 +3,14 @@ from datetime import datetime as DateTime
 
 
 class PromotionBase(BaseModel):
-    promotion_id: int = None
+    promotion_id: str = None
+    pourcentage: float
+    date_debut: DateTime
+    date_fin: DateTime
+    product_id: int
+
+
+class PromotionCreate(BaseModel):
     pourcentage: float
     date_debut: DateTime
     date_fin: DateTime
