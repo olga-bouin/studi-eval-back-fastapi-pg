@@ -1,9 +1,11 @@
+from uuid import uuid4
+
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 from typing import List
 
 from src.core.database.database import connect_with_connector
-from src.core.schemas.Promotion import Promotion
+from src.core.schemas.Promotion import Promotion, PromotionCreate
 from src.core.service import PromotionService
 
 routeur = APIRouter()
@@ -15,5 +17,7 @@ async def get_all_promotions(db: Session = Depends(connect_with_connector)):
 
 
 @routeur.post("/")
-async def create_promotion(promotion: Promotion, db: Session = Depends(connect_with_connector)):
-    return PromotionService.create_promotion(promotion, db)
+async def create_promotion(promotion: PromotionCreate, db: Session = Depends(connect_with_connector)):
+    unique_id = str(uuid4())
+    complete_promotion = {"promotion_id": unique_id, "pourcentage": promotion.pourcentage, "date_debut": promotion.date_debut, "date_fin": promotion.date_fin, "product_id": promotion.product_id}
+    return PromotionService.create_promotion(complete_promotion, db)
