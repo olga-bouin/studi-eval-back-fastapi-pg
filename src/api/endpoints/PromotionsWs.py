@@ -15,5 +15,5 @@ async def get_all_promotions(db: Session = Depends(connect_with_connector)):
 
 
 @routeur.post("/")
-async def create_product(promotion: Promotion, db: Session = Depends(connect_with_connector)):
+async def create_promotion(promotion: Promotion, db: Session = Depends(connect_with_connector)):
     return PromotionService.create_promotion(promotion, db)
