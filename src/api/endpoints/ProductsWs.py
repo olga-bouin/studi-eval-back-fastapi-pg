@@ -10,10 +10,5 @@ routeur = APIRouter()
 
 
 @routeur.get("/", response_model=List[Product])
-async def get_all_catalogs(db: Session = Depends(connect_with_connector)):
+async def get_all_products(db: Session = Depends(connect_with_connector)):
     return ProductService.get_all_products(db)
-
-#TODO: add a post method to create a product
-@routeur.post("/")
-async def create_product(product: Product):
-    return ProductService.create_catalog(product)
