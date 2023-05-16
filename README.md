@@ -10,4 +10,7 @@ pip install fastapi
 pip install python-dotenv
 
 ## Utilisation de l'API
+
 http://127.0.0.1:8000/redoc
+
+Swagger UI : http://127.0.0.1:8000/docs

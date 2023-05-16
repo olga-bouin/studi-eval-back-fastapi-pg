@@ -10,5 +10,15 @@ def get_all_catalogs(db: Session):
     return results
 
 
-def create_catalog(catalog: Catalog):
+def create_catalog(catalog: Catalog, db: Session):
+    stmt = text("INSERT INTO catalog (catalog_id, libelle) VALUES (:catalog_id, :libelle)")
+    db.execute(stmt, {"catalog_id": catalog.catalog_id, "libelle": catalog.libelle})
+    db.commit()
     return catalog
+
+
+def delete_catalog(catalog_id: int, db: Session):
+    stmt = text("DELETE FROM catalog WHERE catalog_id = :catalog_id")
+    db.execute(stmt, {"catalog_id": catalog_id})
+    db.commit()
+    return catalog_id
