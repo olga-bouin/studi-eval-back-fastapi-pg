@@ -1,9 +1,9 @@
-from pydantic import BaseModel, validator
+from pydantic import BaseModel, validator, Field
 
 
 class CatalogBase(BaseModel):
-    catalog_id: int = None
-    libelle: str
+    catalog_id: int = Field(..., description="ID du catalogue", example=8936299)
+    libelle: str = Field(..., description="Libellé du catalogue", example="Cuisine")
 
 
 class Catalog(CatalogBase):
