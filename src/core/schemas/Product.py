@@ -1,4 +1,6 @@
+from pip._internal.operations.check import Missing
 from pydantic import BaseModel, validator, Field
+from pydantic.class_validators import Optional
 
 
 class ProductBase(BaseModel):
@@ -6,9 +8,9 @@ class ProductBase(BaseModel):
     libelle: str = Field(..., description="Libellé du produit", example="Caisson cuisine")
     description: str = Field(..., description="Description du produit", example="Caisson de cuisine 80cm")
     prix: float = Field(..., description="Prix du produit en euros", example=15.0)
-    promotion: float = Field(..., description="Prix promotionnel du produit en euros, en pourcentage fait entre 25% "
+    promotion: Optional[float] = Field(..., description="Prix promotionnel du produit en euros, en pourcentage fait entre 25% "
                                               "et 99% du prix", example=10.0)
-    image: str = Field(..., description="URL de l'image du produit", example="https://www.ikea.com/fr/fr/images"
+    image: Optional[str] = Field(..., description="URL de l'image du produit", example="https://www.ikea.com/fr/fr/images"
                                                                              "/products/maximera-tiroir-bas-avec"
                                                                              "-facade-blanc__0713361_pe729558_s5.jpg"
                                                                              "?f=xl")
@@ -28,6 +30,8 @@ class Product(ProductBase):
 
     @validator("promotion", pre=True)
     def promotion_is_between_1_and_75_percent(cls, value):
+        if value is None:
+            return 0.0
         if value < 1 or value > 75:
             raise ValueError("Pourcentage de remise doit être entre 1% et 75%")
         return value
