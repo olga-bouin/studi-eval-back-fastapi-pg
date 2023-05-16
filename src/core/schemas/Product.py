@@ -11,6 +11,10 @@ class ProductBase(BaseModel):
     catalog_id: int
 
 
+class Promo(BaseModel):
+    promotion: float
+
+
 class Product(ProductBase):
 
     @validator("product_id", pre=True)
