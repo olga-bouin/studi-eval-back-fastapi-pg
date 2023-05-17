@@ -1,4 +1,3 @@
-from pip._internal.operations.check import Missing
 from pydantic import BaseModel, validator, Field
 from pydantic.class_validators import Optional
 

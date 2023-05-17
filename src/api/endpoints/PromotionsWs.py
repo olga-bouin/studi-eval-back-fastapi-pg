@@ -28,3 +28,8 @@ async def create_promotion(promotion: PromotionCreate, db: Session = Depends(con
 @routeur.get("/active_promotions/{product_id}")
 async def get_active_promotions(product_id: int, db: Session = Depends(connect_with_connector)):
     return PromotionService.get_active_promotions(product_id, db)
+
+
+@routeur.get("/extended_promotions_data/")
+async def get_extended_promotions_data(db: Session = Depends(connect_with_connector)):
+    return PromotionService.get_extended_promotions_data(db)
