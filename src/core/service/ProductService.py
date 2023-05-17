@@ -34,6 +34,22 @@ def update_promotion(promotion_pourcentage: float, product_id: int, db: Session)
 
 def compute_promotion(product_id: int, db: Session):
     active_promotions = get_active_promotions(product_id, db)
-    pourcentages = map(lambda promotion: promotion.pourcentage, active_promotions)
-    max_pourcentage = max(pourcentages)
+    pourcentages = list(map(lambda promotion: promotion.pourcentage, active_promotions))
+    print(pourcentages)
+    if len(pourcentages) == 0:
+        max_pourcentage = 0
+    elif len(pourcentages) == 1:
+        max_pourcentage = pourcentages[0]
+    else:
+        max_pourcentage = max(pourcentages)
     return update_promotion(max_pourcentage, product_id, db)
+
+
+def compute_all_promotions(db: Session):
+    products = get_all_products(db)
+    products_ids = map(lambda product: product.product_id, products)
+    products_ids_without_doublons = list(set(products_ids))
+    results = []
+    for product_id in products_ids_without_doublons:
+        results.append([product_id, compute_promotion(product_id, db)])
+    return results
