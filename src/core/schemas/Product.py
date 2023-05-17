@@ -27,14 +27,6 @@ class Product(ProductBase):
     def product_id_is_primary_key(cls, value):
         return value
 
-    @validator("promotion", pre=True)
-    def promotion_is_between_1_and_75_percent(cls, value):
-        if value is None:
-            return 0.0
-        if value < 1 or value > 75:
-            raise ValueError("Pourcentage de remise doit être entre 1% et 75%")
-        return value
-
     @validator("catalog_id", pre=True)
     def catalog_id_is_foreign_key(cls, value):
         return value
