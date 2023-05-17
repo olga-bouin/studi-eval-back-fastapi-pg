@@ -1,5 +1,5 @@
 from sqlalchemy import text
-from sqlalchemy.orm import Session, session
+from sqlalchemy.orm import Session
 
 from src.core.models.Catalog import Catalog
 
