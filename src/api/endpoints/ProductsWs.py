@@ -24,6 +24,11 @@ async def update_promotion(promo: Promo, product_id: int, db: Session = Depends(
     return ProductService.update_promotion(promo.promotion, product_id, db)
 
 
-@routeur.patch("/compute_promotion/{product_id}", tags=["compute_promotion"], response_model=float)
+@routeur.patch("/compute_promotions/{product_id}", tags=["compute_promotion"], response_model=float)
 async def compute_promotion(product_id: int, db: Session = Depends(connect_with_connector)):
     return ProductService.compute_promotion(product_id, db)
+
+
+@routeur.patch("/compute_promotions/")
+async def compute_all_promotions(db: Session = Depends(connect_with_connector)):
+    return ProductService.compute_all_promotions(db)
