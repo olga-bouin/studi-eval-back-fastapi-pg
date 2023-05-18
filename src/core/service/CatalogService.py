@@ -10,6 +10,11 @@ def get_all_catalogs(db: Session):
     return results
 
 
+def get_catalog(catalog_id: int, db: Session):
+    stmt = text("SELECT * FROM catalog WHERE catalog_id = :catalog_id")
+    resultat = db.execute(stmt, {"catalog_id": catalog_id}).first()
+    return resultat
+
 def create_catalog(catalog: Catalog, db: Session):
     stmt = text("INSERT INTO catalog (catalog_id, libelle) VALUES (:catalog_id, :libelle)")
     db.execute(stmt, {"catalog_id": catalog.catalog_id, "libelle": catalog.libelle})

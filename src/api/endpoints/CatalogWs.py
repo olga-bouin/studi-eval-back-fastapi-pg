@@ -14,11 +14,16 @@ async def get_all_catalogs(db: Session = Depends(connect_with_connector)):
     return CatalogService.get_all_catalogs(db)
 
 
+@routeur.get("/{catalog_id}", response_model=Catalog)
+async def get_catalog(catalog_id: int, db: Session = Depends(connect_with_connector)):
+    return CatalogService.get_catalog(catalog_id, db)
+
+
 @routeur.post("/", response_model=Catalog)
 async def create_catalog(catalog: Catalog, db: Session = Depends(connect_with_connector)):
     return CatalogService.create_catalog(catalog, db)
 
 
-@routeur.delete("/catalog/{catalog_id}", response_model=int)
+@routeur.delete("/{catalog_id}", response_model=int)
 async def delete_catalog(catalog_id: int, db: Session = Depends(connect_with_connector)):
     return CatalogService.delete_catalog(catalog_id, db)
