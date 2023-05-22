@@ -7,12 +7,14 @@ class ProductBase(BaseModel):
     libelle: str = Field(..., description="Libellé du produit", example="Caisson cuisine")
     description: str = Field(..., description="Description du produit", example="Caisson de cuisine 80cm")
     prix: float = Field(..., description="Prix du produit en euros", example=15.0)
-    promotion: Optional[float] = Field(..., description="Prix promotionnel du produit en euros, en pourcentage fait entre 25% "
-                                              "et 99% du prix", example=10.0)
-    image: Optional[str] = Field(..., description="URL de l'image du produit", example="https://www.ikea.com/fr/fr/images"
-                                                                             "/products/maximera-tiroir-bas-avec"
-                                                                             "-facade-blanc__0713361_pe729558_s5.jpg"
-                                                                             "?f=xl")
+    promotion: Optional[float] = Field(...,
+                                       description="Prix promotionnel du produit en euros, en pourcentage fait entre 25% "
+                                                   "et 99% du prix", example=10.0)
+    image: Optional[str] = Field(..., description="URL de l'image du produit",
+                                 example="https://www.ikea.com/fr/fr/images"
+                                         "/products/maximera-tiroir-bas-avec"
+                                         "-facade-blanc__0713361_pe729558_s5.jpg"
+                                         "?f=xl")
     catalog_id: int = Field(..., description="ID du catalogue", example=8936299)
 
 
@@ -50,8 +52,8 @@ class Promo(PromoBase):
 class ProductCreate(BaseModel):
     libelle: str = Field(..., description="Libellé du produit", example="Caisson cuisine")
     prix: float = Field(..., description="Prix du produit en euros", example=15.0)
-    image: Optional[str] = Field(..., description="URL de l'image du produit", example="https://www.ikea.com/fr/fr/images"
-                                                                             "/products/maximera-tiroir-bas-avec"
-                                                                             "-facade-blanc__0713361_pe729558_s5.jpg"
-                                                                             "?f=xl")
+    image: Optional[str] = Field(..., description="URL de l'image du produit",
+                                 example="https://www.ikea.com/fr/fr/images"
+                                         "/products/maximera-tiroir-bas-avec"
+                                         "-facade-blanc__0713361_pe729558_s5.jpg")
     catalog_id: int = Field(..., description="ID du catalogue", example=8936299)
