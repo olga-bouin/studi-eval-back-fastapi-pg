@@ -10,6 +10,20 @@ def get_all_products(db: Session):
     return results
 
 
+def create_product(product, db: Session):
+    stmt = text(
+        "INSERT INTO products (product_id, libelle, description, prix, promotion, image, catalog_id) VALUES (:product_id, :libelle, :description, :prix, :promotion, :image, :catalog_id)")
+    db.execute(stmt, product)
+    db.commit()
+    return product
+
+
+def get_max_id(db: Session):
+    stmt = text("SELECT MAX(product_id) FROM products")
+    results = db.execute(stmt).mappings().all()
+    return results[0].max
+
+
 def get_product(product_id: int, db: Session):
     stmt = text("SELECT * FROM products WHERE product_id = :product_id LIMIT  1")
     results = db.execute(stmt, {"product_id": product_id}).all()

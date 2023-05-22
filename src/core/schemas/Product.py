@@ -45,3 +45,13 @@ class Promo(PromoBase):
 
     class Config:
         orm_mode = True
+
+
+class ProductCreate(BaseModel):
+    libelle: str = Field(..., description="Libellé du produit", example="Caisson cuisine")
+    prix: float = Field(..., description="Prix du produit en euros", example=15.0)
+    image: Optional[str] = Field(..., description="URL de l'image du produit", example="https://www.ikea.com/fr/fr/images"
+                                                                             "/products/maximera-tiroir-bas-avec"
+                                                                             "-facade-blanc__0713361_pe729558_s5.jpg"
+                                                                             "?f=xl")
+    catalog_id: int = Field(..., description="ID du catalogue", example=8936299)
