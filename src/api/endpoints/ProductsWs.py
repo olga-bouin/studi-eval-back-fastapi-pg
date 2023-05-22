@@ -2,9 +2,8 @@ from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 from typing import List
 
-from core.schemas.Product import ProductCreate
 from src.core.database.database import connect_with_connector
-from src.core.schemas.Product import Product, Promo
+from src.core.schemas.Product import Product, Promo, ProductCreate
 from src.core.service import ProductService
 
 routeur = APIRouter()
