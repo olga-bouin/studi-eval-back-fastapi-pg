@@ -14,3 +14,7 @@ pip install python-dotenv
 http://127.0.0.1:8000/redoc
 
 Swagger UI : http://127.0.0.1:8000/docs
+
+## Tests
+
+pytest --cov=.
