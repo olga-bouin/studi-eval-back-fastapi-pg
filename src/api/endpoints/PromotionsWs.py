@@ -22,7 +22,7 @@ async def create_promotion(promotion: PromotionCreate, db: Session = Depends(con
     complete_promotion = {"promotion_id": unique_id, "pourcentage": promotion.pourcentage,
                           "date_debut": promotion.date_debut, "date_fin": promotion.date_fin,
                           "product_id": promotion.product_id}
-    return PromotionService.create_promotion(complete_promotion, db)
+    return PromotionService.create_promotion(complete_promotion, db, str(promotion.date_debut) == "1900-01-01 00:00:00")
 
 
 @routeur.get("/active_promotions/{product_id}")

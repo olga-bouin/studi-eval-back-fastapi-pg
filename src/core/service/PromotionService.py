@@ -10,11 +10,12 @@ def get_all_promotions(db: Session):
     return results
 
 
-def create_promotion(promotion: Promotion, db: Session):
+def create_promotion(promotion: Promotion, db: Session, is_test: bool = False):
     stmt = text(
         "INSERT INTO promotions (promotion_id, pourcentage, date_debut, date_fin, product_id) VALUES (:promotion_id, :pourcentage, :date_debut, :date_fin, :product_id)")
     db.execute(stmt, promotion)
-    db.commit()
+    if not is_test:
+        db.commit()
     return promotion
 
 

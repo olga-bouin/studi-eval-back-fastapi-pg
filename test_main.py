@@ -84,12 +84,12 @@ def is_valid_uuid(val):
 
 
 def test_create_promotion():
-    response = client.post("/api/promotions/", json={"pourcentage": 1, "date_debut": "2023-05-15 06:29:49.000",
+    response = client.post("/api/promotions/", json={"pourcentage": 1, "date_debut": "1900-01-01 00:00:00.000",
                                                      "date_fin": "2023-05-15 06:29:49.000", "product_id": 32})
 
     assert response.status_code == 200
     assert response.json()["pourcentage"] == 1
-    assert response.json()["date_debut"] == "2023-05-15T06:29:49"
+    assert response.json()["date_debut"] == "1900-01-01T00:00:00"
     assert response.json()["date_fin"] == "2023-05-15T06:29:49"
     assert response.json()["product_id"] == 32
     assert is_valid_uuid(response.json()["promotion_id"]) == True
